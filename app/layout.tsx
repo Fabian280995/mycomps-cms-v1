@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: "mycomps.de - Content Management System",
 };
 
-export default function RootLayout({
+export default function SetupLayout({
   children,
 }: {
   children: React.ReactNode;
