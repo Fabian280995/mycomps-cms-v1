@@ -1,4 +1,6 @@
+import Sidebar from "@/components/sidebar";
 import prismadb from "@/lib/prismadb";
+import { ToasterProvider } from "@/providers/toast-provider";
 
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
@@ -16,5 +18,13 @@ export default async function RootLayout({
   });
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  return <div className="w-full h-screen flex overflow-hidden">{children}</div>;
+  return (
+    <div className="w-full h-screen flex overflow-hidden">
+      <ToasterProvider />
+      <div className="flex">
+        <Sidebar />
+        {children}
+      </div>
+    </div>
+  );
 }

@@ -16,6 +16,7 @@ import { Button } from "../ui/button";
 import { Save } from "lucide-react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/actions/user.actions";
 
 interface Props {
   userData: {
@@ -50,6 +51,9 @@ const OnboardingForm = ({ userData }: Props) => {
   const onSubmit = async (data: z.infer<typeof UserInfoValidation>) => {
     try {
       setLoading(true);
+      const response = await createUser(data);
+      console.log(response);
+      toast.success("Dein Profil wurde erfolgreich gespeichert!");
       router.push("/");
     } catch (error: any) {
       toast.error(error.message);
