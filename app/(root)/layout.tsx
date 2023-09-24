@@ -1,3 +1,4 @@
+import MobileSidebar from "@/components/mobile-sidebar";
 import Sidebar from "@/components/sidebar";
 import prismadb from "@/lib/prismadb";
 import { ToasterProvider } from "@/providers/toast-provider";
@@ -22,7 +23,12 @@ export default async function RootLayout({
     <div className="w-full h-screen flex overflow-hidden">
       <ToasterProvider />
       <div className="flex">
-        <Sidebar />
+        <div className="hidden md:flex h-full">
+          <Sidebar />
+        </div>
+        <div className="visible md:hidden h-full">
+          <MobileSidebar />
+        </div>
         {children}
       </div>
     </div>
